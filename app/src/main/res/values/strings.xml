@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ACCM</string>
+    <string name="title_main">Main</string>
+    <string name="title_profiles">Profiles</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
