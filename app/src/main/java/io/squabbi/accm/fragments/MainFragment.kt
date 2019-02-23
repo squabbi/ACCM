@@ -27,7 +27,7 @@ class MainFragment: Fragment() {
         mainViewModel.mAccInfoLiveData.observe(this, Observer {
                 info ->
             // Update UI
-            info?.let { textView_batteryStatus.text = info.status }
+            info?.let { textView_batteryStatus.text = info.voltage.toString() }
         })
     }
 
