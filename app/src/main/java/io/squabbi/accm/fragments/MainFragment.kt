@@ -23,12 +23,23 @@ class MainFragment: Fragment() {
 
         // Set ViewModel
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
         // Observe
         mainViewModel.mAccInfoLiveData.observe(this, Observer {
                 info ->
             // Update UI
-            info?.let { textView_batteryStatus.text = info.voltage.toString() }
+            info?.let {
+                textView_batteryStatus.text = info.status
+                textView_batterySpeed.text = info.chargeType
+                updateCapacity(info.capactiy)
+                textView_batteryTemp.text = info.temperature.toString().plus(Typography.degree)
+            }
         })
+    }
+
+    private fun updateCapacity(capacity: Int) {
+        textView_batteryCapacity.text = capacity.toString().plus("%")
+        progressBar_capacity.progress = capacity
     }
 
     companion object {
