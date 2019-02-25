@@ -15,7 +15,7 @@ class AccRepository {
 
     val accInfoRunnable = object: Runnable {
         override fun run() {
-            mAccInfoLiveData.value = AccUtils.getBatteryInfo()
+            mAccInfoLiveData.value = AccUtils.getAccInfo()
             UiThreadHandler.handler.postDelayed(this, 1000)
         }
     }
