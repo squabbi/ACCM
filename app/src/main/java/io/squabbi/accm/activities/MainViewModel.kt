@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.topjohnwu.superuser.internal.UiThreadHandler.handler
+import io.squabbi.accm.models.AccConfig
 import io.squabbi.accm.models.AccInfo
 import io.squabbi.accm.repo.AccRepository
 import io.squabbi.accm.utils.AccUtils
@@ -16,21 +17,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: AccRepository
 
     val mAccInfoLiveData: LiveData<AccInfo>
+    val mAccConfigLiveData: LiveData<AccConfig>
 
     init {
         repository = AccRepository()
         mAccInfoLiveData = repository.mAccInfoLiveData
+        mAccConfigLiveData = repository.mAccConfigLiveData
     }
-
-//    val accInfoRunnable = object: Runnable {
-//        override fun run() {
-//            mAccInfoLiveData.value = AccUtils.getAccInfo()
-//            handler.postDelayed(this, 1000)
-//        }
-//    }
-//
-//    init {
-//        val handler: Handler = Handler()
-//        handler.post(accInfoRunnable)
-//    }
 }
