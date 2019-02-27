@@ -34,7 +34,7 @@
                 <com.dinuscxj.progressbar.CircleProgressBar
                     android:id="@+id/progressBar_capacity"
                     app:progress_stroke_cap="round"
-                    app:line_width="6dp"
+                    app:line_width="8dp"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"/>
