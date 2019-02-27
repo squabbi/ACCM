@@ -1,7 +1,5 @@
 package io.squabbi.accm.utils
-import androidx.core.content.res.TypedArrayUtils.getString
 import com.topjohnwu.superuser.Shell
-import io.squabbi.accm.R
 import io.squabbi.accm.models.AccInfo
 
 
