@@ -1,5 +1,6 @@
 package io.squabbi.accm.utils
 import com.topjohnwu.superuser.Shell
+import io.squabbi.accm.models.AccConfig
 import io.squabbi.accm.models.AccInfo
 
 
@@ -19,7 +20,13 @@ object AccUtils {
     val CAPACITY_CONFIG_REGEXP = """^\s*capacity=(\d*),(\d*),(\d+)-(\d+)""".toRegex(RegexOption.MULTILINE)
     val COOLDOWN_CONFIG_REGEXP = """^\s*coolDown=(\d*)/(\d*)""".toRegex(RegexOption.MULTILINE)
     val TEMP_CONFIG_REGEXP = """^\s*temp=(\d*)-(\d*)_(\d*)""".toRegex(RegexOption.MULTILINE)
+    // Regex for finding verbose entry
+    val VERBOSE_CONFIG_REGEXP = """^\s*verbose=(true|false)""".toRegex(RegexOption.MULTILINE)
     val RESET_UNPLUGGED_CONFIG_REGEXP = """^\s*resetUnplugged=(true|false)""".toRegex(RegexOption.MULTILINE)
+    // Regex for finding loopDelay
+    val LOOP_DELAY_CONFIG_REGEXP = """^\s*loopDelay=(\d*)""".toRegex(RegexOption.MULTILINE)
+    // Regex for finding maxLogSize
+    val MAX_LOG_SIZE_CONFIG_REGEXP = """^\s*maxLogSize=(\d*)""".toRegex(RegexOption.MULTILINE)
     val ON_BOOT_EXIT = """^\s*onBootExit=(true|false)""".toRegex(RegexOption.MULTILINE)
     val ON_BOOT = """^\s*onBoot=([^#]+)""".toRegex(RegexOption.MULTILINE)
     val VOLT_FILE = """^\s*voltFile=([^#]+)""".toRegex(RegexOption.MULTILINE)
@@ -74,6 +81,7 @@ object AccUtils {
     private val CYCLE_COUNT_REGEXP = "^\\s*CYCLE_COUNT=(\\d+)".toRegex(RegexOption.MULTILINE)
 
     fun getAccInfo(): AccInfo {
+
         val info =  Shell.su("acc -i").exec().out.joinToString(separator = "\n")
 
         return AccInfo(
@@ -131,6 +139,31 @@ object AccUtils {
             CHARGE_CONTROL_LIMIT_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -1,
             INPUT_CURRENT_MAX_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -1,
             CYCLE_COUNT_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -1
+        )
+    }
+
+    fun getAccConfig(): AccConfig {
+        val info = Shell.su("acc -s").exec().out.joinToString(separator = "\n")
+
+        val config_capacity = CAPACITY_CONFIG_REGEXP.find(info)?.destructured
+        val config_coolDown = COOLDOWN_CONFIG_REGEXP.find(info)?.destructured
+        val config_temp = TEMP_CONFIG_REGEXP.find(info)?.destructured
+
+        return AccConfig(
+            intArrayOf(config_capacity?.component1()?.toIntOrNull() ?: -404,
+                config_capacity?.component2()?.toIntOrNull() ?: -404,
+                config_capacity?.component3()?.toIntOrNull() ?: -404,
+                config_capacity?.component4()?.toIntOrNull() ?: -404),
+            intArrayOf(config_coolDown?.component1()?.toIntOrNull() ?: -404,
+                config_coolDown?.component2()?.toIntOrNull() ?: -404),
+            intArrayOf(config_temp?.component1()?.toIntOrNull() ?: -404,
+                config_temp?.component2()?.toIntOrNull() ?: -404,
+                config_temp?.component3()?.toIntOrNull() ?: -404),
+            VERBOSE_CONFIG_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
+            RESET_UNPLUGGED_CONFIG_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
+            LOOP_DELAY_CONFIG_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -404,
+            MAX_LOG_SIZE_CONFIG_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -404,
+            ON_BOOT_EXIT.find(info)?.destructured?.component1() ?: STRING_UNKNOWN
         )
     }
 }
