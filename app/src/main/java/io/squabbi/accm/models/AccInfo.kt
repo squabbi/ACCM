@@ -71,11 +71,11 @@ class AccInfo(
     val cycleCount: Int) {
 
     /**
-     * 
+     * Returns inverted, friendly value for CURRENT_NOW. Divided by 1000 to get mAh, from uAh.
+     * @return current mAh draw.
      */
     fun getCurrentNow(): String {
 
-
-        return ""
+        return ((currentNow/1000).inv()).toString()
     }
 }
