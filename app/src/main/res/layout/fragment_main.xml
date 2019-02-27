@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Battery Card -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Battery"/>
+                android:text="@string/title_battery"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -52,26 +53,21 @@
                             android:textSize="@dimen/label_text"
                             android:text="@string/info_status"/>
 
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="end">
                         <TextView
-                            android:id="@+id/textView_batteryStatus"
+                            android:id="@+id/tv_main_batteryStatus"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="end" />
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/label_text"
-                            android:text="@string/info_speed"/>
+                            android:layout_height="wrap_content" />
 
                         <TextView
-                            android:id="@+id/textView_batterySpeed"
+                            android:id="@+id/tv_main_batterySpeed"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="end" />
+                            android:layout_height="wrap_content" />
+                        </LinearLayout>
                     </TableRow>
+
 
                     <TableRow>
                         <TextView
@@ -81,7 +77,7 @@
                             android:text="@string/info_capacity"/>
 
                         <TextView
-                            android:id="@+id/textView_batteryCapacity"
+                            android:id="@+id/tv_main_batteryCapacity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end" />
@@ -95,13 +91,177 @@
                             android:text="@string/info_temperature"/>
 
                         <TextView
-                            android:id="@+id/textView_batteryTemp"
+                            android:id="@+id/tv_main_batteryTemp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Config Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/title_configuration"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_capacity"/>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="end">
+
+                            <TextView
+                                android:id="@+id/tv_main_config_capacity_shutdown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/tv_main_config_capacity_cooldown"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/tv_main_config_capacity_chargeBetween"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </TableRow>
+
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_coolDown"/>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="end" >
+
+                            <TextView
+                                android:id="@+id/tv_main_config_coolDown_charge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/tv_main_config_coolDown_pause"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_temp"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_temp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_verbose"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_verbose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_resetUnplugged"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_resetOnUnplugged"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_loopDelay"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_loopDelay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_maxLogSize"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_maxLogSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:text="@string/config_onBootExit"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_onBootExit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end" />
+                    </TableRow>
+                </TableLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
