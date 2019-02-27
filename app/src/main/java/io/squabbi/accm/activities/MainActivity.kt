@@ -2,12 +2,14 @@ package io.squabbi.accm.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.squabbi.accm.R
 import io.squabbi.accm.fragments.MainFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var mainViewModel: MainViewModel
 
@@ -15,23 +17,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mToolbar = toolbar_main
-        val mNavbar = botNav_view
+        var mToolbar = toolbar_main
+        var mNavbar = botNav_view
 
-        mNavbar.setOnNavigationItemSelectedListener { m ->
-            when (m.itemId) {
-                R.id.botNav_home -> {
-                    mToolbar.title = "Home"
-                    val mainFragment = MainFragment.newInstance()
-                    loadFragment(mainFragment)
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.botNav_profiles -> mToolbar.setTitle("Profiles")
-                R.id.botNav_settings -> mToolbar.setTitle("Settings")
-            }
+        mNavbar.setOnNavigationItemSelectedListener(this)
 
-            false
+        if (savedInstanceState == null) {
+            // TODO: allow the user to set default page
+            val item = mNavbar.menu.getItem(0)
+            onNavigationItemSelected(item)
         }
+    }
+
+
+    override fun onNavigationItemSelected(m: MenuItem): Boolean {
+        when (m.itemId) {
+            R.id.botNav_home -> {
+                val mainFragment = MainFragment.newInstance()
+                loadFragment(mainFragment)
+                return true
+            }
+            R.id.botNav_profiles -> {
+                // TODO: Show Profiles fragment
+                return true
+            }
+            R.id.botNav_settings -> {
+                // TODO: Show settings fragment
+                return true
+            }
+        }
+
+        return false
     }
 
     private fun loadFragment(fragment: Fragment) {

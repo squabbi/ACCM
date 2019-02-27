@@ -9,7 +9,7 @@ package io.squabbi.accm.models
  * @param health Physical health of the battery.
  * @param present
  * @param chargeType Speed of the charging (Fast or Slow).
- * @param capactiy Returns current battery percentage.
+ * @param capacity Returns current battery percentage.
  * @param chargerTemp Returns charger temperature.
  * @param chargerTempMax Returns max (reported?) charger temperature.
  * @param isInputCurrentLimited Returns if the input is current limited.
@@ -36,35 +36,46 @@ package io.squabbi.accm.models
  * @param inputCurrentMax
  * @param cycleCount Returns the number of charge cycles completed by the battery.
  */
-class AccInfo(val name: String,
-              val isInputSuspend: Boolean,
-              val status: String,
-              val health: String,
-              val present: Int,
-              val chargeType: String,
-              val capactiy: Int,
-              val chargerTemp: Int,
-              val chargerTempMax: Int,
-              val isInputCurrentLimited: Boolean,
-              val voltageNow: Int,
-              val voltageMax: Int,
-              val voltageQnovo: Int,
-              val currentNow: Int,
-              val currentQnovo: Int,
-              val constantChargeCurrentMax: Int,
-              val temperature: Int,
-              val technology: String,
-              val isStepChargingEnabled: Boolean,
-              val isSwJeitaEnabled: Boolean,
-              val isTaperControlEnabled: Boolean,
-              val isChargeDisabled: Boolean,
-              val isChargeDone: Boolean,
-              val isParallelDisabled: Boolean,
-              val setShipMode: Boolean,
-              val dieHealth: String,
-              val rerunAicl: Boolean,
-              val dpDm: Boolean,
-              val chargeControlLimitMax: Int,
-              val chargeControlLimit: Int,
-              val inputCurrentMax: Int,
-              val cycleCount: Int)
+class AccInfo(
+    val name: String,
+    val isInputSuspend: Boolean,
+    val status: String,
+    val health: String,
+    val present: Int,
+    val chargeType: String,
+    val capacity: Int,
+    val chargerTemp: Int,
+    val chargerTempMax: Int,
+    val isInputCurrentLimited: Boolean,
+    val voltageNow: Int,
+    val voltageMax: Int,
+    val voltageQnovo: Int,
+    val currentNow: Int,
+    val currentQnovo: Int,
+    val constantChargeCurrentMax: Int,
+    val temperature: Int,
+    val technology: String,
+    val isStepChargingEnabled: Boolean,
+    val isSwJeitaEnabled: Boolean,
+    val isTaperControlEnabled: Boolean,
+    val isChargeDisabled: Boolean,
+    val isChargeDone: Boolean,
+    val isParallelDisabled: Boolean,
+    val setShipMode: Boolean,
+    val dieHealth: String,
+    val rerunAicl: Boolean,
+    val dpDm: Boolean,
+    val chargeControlLimitMax: Int,
+    val chargeControlLimit: Int,
+    val inputCurrentMax: Int,
+    val cycleCount: Int) {
+
+    /**
+     * 
+     */
+    fun getCurrentNow(): String {
+
+
+        return ""
+    }
+}

@@ -30,8 +30,8 @@ class MainFragment: Fragment() {
             // Update UI
             info?.let {
                 textView_batteryStatus.text = info.status
-                textView_batterySpeed.text = info.chargeType
-                updateCapacity(info.capactiy)
+                textView_batterySpeed.text = "${info.chargeType} @ ${info.currentNow.div(1000)}"
+                updateCapacity(info.capacity)
                 textView_batteryTemp.text = info.temperature.toString().plus(Typography.degree)
             }
         })
