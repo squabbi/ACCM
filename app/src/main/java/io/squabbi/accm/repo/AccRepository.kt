@@ -3,6 +3,7 @@ package io.squabbi.accm.repo
 import android.os.Handler
 import androidx.lifecycle.MutableLiveData
 import com.topjohnwu.superuser.internal.UiThreadHandler
+import io.squabbi.accm.models.AccConfig
 import io.squabbi.accm.models.AccInfo
 import io.squabbi.accm.utils.AccUtils
 
@@ -12,10 +13,12 @@ import io.squabbi.accm.utils.AccUtils
 class AccRepository {
 
     val mAccInfoLiveData: MutableLiveData<AccInfo> = MutableLiveData()
+    val mAccConfigLiveData: MutableLiveData<AccConfig> = MutableLiveData()
 
     val accInfoRunnable = object: Runnable {
         override fun run() {
             mAccInfoLiveData.value = AccUtils.getAccInfo()
+            mAccConfigLiveData.value = AccUtils.getAccConfig()
             UiThreadHandler.handler.postDelayed(this, 1000)
         }
     }
