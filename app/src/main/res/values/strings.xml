@@ -14,6 +14,34 @@
     <string name="info_charging">Charging</string>
     <string name="info_unknown">Unknown</string>
 
+    <string name="title_battery">Battery</string>
+    <string name="title_configuration">Configuration</string>
+
+    <string name="config_capacity">Capacity</string>
+    <string name="config_coolDown">Cool Down</string>
+    <string name="config_temp">Temperature</string>
+    <string name="config_verbose">Verbose</string>
+    <string name="config_resetUnplugged">Reset on unplug</string>
+    <string name="config_loopDelay">Loop Delay</string>
+    <string name="config_maxLogSize">Maximum log size</string>
+    <string name="config_onBootExit">Exit on boot</string>
+
+    <string name="config_capacity_shutdownAt">Shutdown at %1$d%%</string>
+    <string name="config_capacity_coolDownAt">Cool Down at %1$d%%</string>
+    <string name="config_capacity_chargeBetween">Charge from %1$d%% till %2$d%%</string>
+
+    <plurals name="plural_config_coolDown_charge">
+        <item quantity="one">Charge for %d second</item>
+        <item quantity="other">Charge for %d seconds</item>
+    </plurals>
+
+    <plurals name="plural_config_coolDown_pause">
+        <item quantity="one">Pause for %d second</item>
+        <item quantity="other">Pause for %d seconds</item>
+    </plurals>
+
+    <string name="info_status_extended">%1$s at %2$s mAh</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
