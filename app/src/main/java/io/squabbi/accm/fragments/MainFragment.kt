@@ -24,21 +24,41 @@ class MainFragment: Fragment() {
         // Set ViewModel
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        // Observe
+        // Observeables
         mainViewModel.mAccInfoLiveData.observe(this, Observer {
                 info ->
             // Update UI
             info?.let {
-                textView_batteryStatus.text = info.status
-                textView_batterySpeed.text = "${info.chargeType} @ ${info.currentNow.div(1000)}"
+                tv_main_batteryStatus.text = getString(R.string.info_status_extended, info.status, info.getCurrentNow())
+                tv_main_batterySpeed.text = info.chargeType
                 updateCapacity(info.capacity)
-                textView_batteryTemp.text = info.temperature.toString().plus(Typography.degree)
+                tv_main_batteryTemp.text = info.temperature.toString().plus(Typography.degree)
+            }
+        })
+
+        mainViewModel.mAccConfigLiveData.observe(this, Observer {
+                info ->
+            // Update UI
+            info?.let {
+                // Capacity
+                tv_main_config_capacity_shutdown.text = getString(R.string.config_capacity_shutdownAt,
+                    info.capacity[0])
+                tv_main_config_capacity_cooldown.text = getString(R.string.config_capacity_coolDownAt,
+                    info.capacity[1])
+                tv_main_config_capacity_chargeBetween.text = getString(R.string.config_capacity_chargeBetween,
+                    info.capacity[2], info.capacity[3])
+
+                // Cool Down
+                tv_main_config_coolDown_charge.text = resources.getQuantityString(R.plurals.plural_config_coolDown_charge,
+                    info.coolDown[0], info.coolDown[0])
+                tv_main_config_coolDown_pause.text = resources.getQuantityString(R.plurals.plural_config_coolDown_pause,
+                    info.coolDown[1], info.coolDown[1])
             }
         })
     }
 
     private fun updateCapacity(capacity: Int) {
-        textView_batteryCapacity.text = capacity.toString().plus("%")
+        tv_main_batteryCapacity.text = capacity.toString().plus("%")
         progressBar_capacity.progress = capacity
     }
 
