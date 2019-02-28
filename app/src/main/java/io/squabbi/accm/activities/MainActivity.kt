@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.squabbi.accm.R
 import io.squabbi.accm.fragments.MainFragment
@@ -11,20 +12,28 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var mMainViewModel: MainViewModel
+    private lateinit var mMainFragment: MainFragment
+//    private lateinit var mProfilesFragment: ProfilesFragment
+//    private lateinit var mSettingsFragment: SettingsFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var mToolbar = toolbar_main
-        var mNavbar = botNav_view
+        var navbar = botNav_view
 
-        mNavbar.setOnNavigationItemSelectedListener(this)
+        // Set ViewModel
+        mMainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        // Initialise fragments
+        mMainFragment = MainFragment.newInstance()
+
+        navbar.setOnNavigationItemSelectedListener(this)
 
         if (savedInstanceState == null) {
             // TODO: allow the user to set default page
-            val item = mNavbar.menu.getItem(0)
+            val item = navbar.menu.getItem(0)
             onNavigationItemSelected(item)
         }
     }
@@ -33,8 +42,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(m: MenuItem): Boolean {
         when (m.itemId) {
             R.id.botNav_home -> {
-                val mainFragment = MainFragment.newInstance()
-                loadFragment(mainFragment)
+                loadFragment(mMainFragment)
                 return true
             }
             R.id.botNav_profiles -> {
@@ -52,8 +60,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     private fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
+
+//        val currentFragment = supportFragmentManager.primaryNavigationFragment
+//        if (currentFragment != null) {
+//            transaction.detach(currentFragment)
+//        }
+
         transaction.replace(R.id.frameLayout_main, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        transaction.commitAllowingStateLoss()
     }
 }
