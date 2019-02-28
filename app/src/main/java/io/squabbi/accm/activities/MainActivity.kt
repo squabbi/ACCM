@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -67,6 +68,34 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         return false
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.menu_toggleAccd -> {
+            // Determine if accd is running
+            if (mMainViewModel.isAccDaemonRunning()) {
+                if (mMainViewModel.stopAccDaemon()) {
+                    Toast.makeText(applicationContext, "acc daemon successfully stopped", Toast.LENGTH_SHORT)
+                } else {
+                    Toast.makeText(this, "Could not complete command", Toast.LENGTH_SHORT)
+                }
+            } else {
+                if (mMainViewModel.startAccDaemon()) {
+                    Toast.makeText(this, "acc daemon successfully started", Toast.LENGTH_SHORT)
+                } else {
+                    Toast.makeText(this, "Could not complete command", Toast.LENGTH_SHORT)
+                }
+            }
+
+            true
+        }
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }
+
 
     private fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

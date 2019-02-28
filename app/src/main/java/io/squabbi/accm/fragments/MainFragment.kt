@@ -90,10 +90,9 @@ class MainFragment: Fragment() {
                 iv_main_status_icon.setImageResource(R.drawable.ic_baseline_error_24px)
             }
         })
-        
+
         return view
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

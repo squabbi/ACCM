@@ -26,4 +26,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         mAccConfigLiveData = repository.mAccConfigLiveData
         mAccDaemonRunning = repository.mAccDaemonRunningLiveData
     }
+
+    fun isAccDaemonRunning(): Boolean {
+        return repository.isAccDaemonRunning()
+    }
+
+    fun stopAccDaemon(): Boolean {
+        return repository.stopAccDaemon()
+    }
+
+    fun startAccDaemon(): Boolean {
+        return repository.startAccDaemon()
+    }
+
+    fun restartAccDaemon(): Boolean {
+        return repository.restartAccDaemon()
+    }
 }

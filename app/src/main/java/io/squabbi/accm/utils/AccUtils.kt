@@ -181,4 +181,16 @@ object AccUtils {
                 }
                 )
     }
+
+    fun stopAccDaemon(): Boolean {
+        return Shell.su("acc -D stop").exec().isSuccess
+    }
+
+    fun startAccDaemon(): Boolean {
+        return Shell.su("acc -D start").exec().isSuccess
+    }
+
+    fun restartAccDaemon(): Boolean {
+        return Shell.su("acc -D restart").exec().isSuccess
+    }
 }

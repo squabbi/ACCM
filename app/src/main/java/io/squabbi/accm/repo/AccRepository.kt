@@ -29,4 +29,20 @@ class AccRepository {
         val handler: Handler = Handler()
         handler.post(accInfoRunnable)
     }
+
+    fun isAccDaemonRunning(): Boolean {
+        return AccUtils.isDaemonRunning()
+    }
+
+    fun stopAccDaemon(): Boolean {
+        return AccUtils.stopAccDaemon()
+    }
+
+    fun startAccDaemon(): Boolean {
+        return AccUtils.startAccDaemon()
+    }
+
+    fun restartAccDaemon(): Boolean {
+        return AccUtils.restartAccDaemon()
+    }
 }
