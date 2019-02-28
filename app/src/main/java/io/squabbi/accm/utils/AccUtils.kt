@@ -33,12 +33,13 @@ object AccUtils {
     val ON_BOOT_EXIT = """^\s*onBootExit=(true|false)""".toRegex(RegexOption.MULTILINE)
     val ON_BOOT = """^\s*onBoot=([^#]+)""".toRegex(RegexOption.MULTILINE)
     val VOLT_FILE = """^\s*voltFile=([^#]+)""".toRegex(RegexOption.MULTILINE)
+    val SELF_UPGRADE_CONFIG_REGEXP = """^\s*selfUpgrade=(true|false)""".toRegex(RegexOption.MULTILINE)
 
     // Regex for determining NAME of BATTERY
     private val NAME_REGEXP = "^\\s*NAME=([a-zA-Z0-9]+)".toRegex(RegexOption.MULTILINE)
     // Regex for INPUT_SUSPEND
     private val INPUT_SUSPEND_REGEXP = "^\\s*INPUT_SUSPEND=(0|1)".toRegex(RegexOption.MULTILINE)
-    private val STATUS_REGEXP = "^\\s*STATUS=(Charging|Discharging)".toRegex(RegexOption.MULTILINE)
+    private val STATUS_REGEXP = "^\\s*STATUS=(Charging|Discharging|Not charging)".toRegex(RegexOption.MULTILINE)
     private val HEALTH_REGEXP = "^\\s*HEALTH=([a-zA-Z]+)".toRegex(RegexOption.MULTILINE)
     // Regex for PRESENT value
     private val PRESENT_REGEXP = "^\\s*PRESENT=(\\d+)".toRegex(RegexOption.MULTILINE)
