@@ -17,6 +17,9 @@ object AccUtils {
     private val STRING_DISCHARGING = "Discharging"
     private val STRING_CHARGING = "Charging"
 
+    // Regex for checking daemon status
+    val DAEMON_STATUS_REGEXP = """\s*(not)""".toRegex(RegexOption.MULTILINE)
+
     val CAPACITY_CONFIG_REGEXP = """^\s*capacity=(\d*),(\d*),(\d+)-(\d+)""".toRegex(RegexOption.MULTILINE)
     val COOLDOWN_CONFIG_REGEXP = """^\s*coolDown=(\d*)/(\d*)""".toRegex(RegexOption.MULTILINE)
     val TEMP_CONFIG_REGEXP = """^\s*temp=(\d*)-(\d*)_(\d*)""".toRegex(RegexOption.MULTILINE)
@@ -165,5 +168,15 @@ object AccUtils {
             MAX_LOG_SIZE_CONFIG_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -404,
             ON_BOOT_EXIT.find(info)?.destructured?.component1() ?: STRING_UNKNOWN
         )
+    }
+
+    fun isDaemonRunning(): Boolean {
+        val info = Shell.su("acc -D").exec().out.joinToString("\n")
+
+        return (
+                DAEMON_STATUS_REGEXP.find(info)?.destructured?.component1().let {
+                    !it.equals("not")
+                }
+                )
     }
 }
