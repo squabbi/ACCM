@@ -85,7 +85,6 @@ object AccUtils {
     private val CYCLE_COUNT_REGEXP = "^\\s*CYCLE_COUNT=(\\d+)".toRegex(RegexOption.MULTILINE)
 
     fun getAccInfo(): AccInfo {
-
         val info =  Shell.su("acc -i").exec().out.joinToString(separator = "\n")
 
         return AccInfo(
@@ -160,8 +159,8 @@ object AccUtils {
                 config_capacity?.component4()?.toIntOrNull() ?: -404),
             intArrayOf(config_coolDown?.component1()?.toIntOrNull() ?: -404,
                 config_coolDown?.component2()?.toIntOrNull() ?: -404),
-            intArrayOf(config_temp?.component1()?.toIntOrNull() ?: -404,
-                config_temp?.component2()?.toIntOrNull() ?: -404,
+            intArrayOf(config_temp?.component1()?.toIntOrNull()?.let { it/10 } ?: -404,
+                config_temp?.component2()?.toIntOrNull()?.let { it/10 } ?: -404,
                 config_temp?.component3()?.toIntOrNull() ?: -404),
             VERBOSE_CONFIG_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
             RESET_UNPLUGGED_CONFIG_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
