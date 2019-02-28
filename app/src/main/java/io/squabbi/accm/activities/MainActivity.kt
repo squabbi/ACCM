@@ -2,6 +2,8 @@ package io.squabbi.accm.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -26,6 +28,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         // Set ViewModel
         mMainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
+        // Set SupportActionBar
+        setSupportActionBar(findViewById(R.id.toolbar_main))
+
         // Initialise fragments
         mMainFragment = MainFragment.newInstance()
 
@@ -38,6 +43,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_bar, menu)
+        return true
+    }
 
     override fun onNavigationItemSelected(m: MenuItem): Boolean {
         when (m.itemId) {
