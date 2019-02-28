@@ -2,4 +2,7 @@
 <resources>
     <dimen name="label_text">16sp</dimen>
     <dimen name="value_text">12sp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_padding">15dp</dimen>
 </resources>
