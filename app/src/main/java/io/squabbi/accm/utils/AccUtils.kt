@@ -86,7 +86,7 @@ object AccUtils {
     private val CYCLE_COUNT_REGEXP = "^\\s*CYCLE_COUNT=(\\d+)".toRegex(RegexOption.MULTILINE)
 
     fun getAccInfo(): AccInfo {
-        val info =  Shell.su("acc -i").exec().out.joinToString(separator = "\n")
+        val info =  Shell.su("acc -i").exec().out.joinToString("\n")
 
         return AccInfo(
             NAME_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
@@ -147,7 +147,7 @@ object AccUtils {
     }
 
     fun getAccConfig(): AccConfig {
-        val info = Shell.su("acc -s").exec().out.joinToString(separator = "\n")
+        val info = Shell.su("acc -s").exec().out.joinToString("\n")
 
         val config_capacity = CAPACITY_CONFIG_REGEXP.find(info)?.destructured
         val config_coolDown = COOLDOWN_CONFIG_REGEXP.find(info)?.destructured
@@ -167,7 +167,8 @@ object AccUtils {
             RESET_UNPLUGGED_CONFIG_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
             LOOP_DELAY_CONFIG_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -404,
             MAX_LOG_SIZE_CONFIG_REGEXP.find(info)?.destructured?.component1()?.toIntOrNull() ?: -404,
-            ON_BOOT_EXIT.find(info)?.destructured?.component1() ?: STRING_UNKNOWN
+            ON_BOOT_EXIT.find(info)?.destructured?.component1() ?: STRING_UNKNOWN,
+            SELF_UPGRADE_CONFIG_REGEXP.find(info)?.destructured?.component1() ?: STRING_UNKNOWN
         )
     }
 

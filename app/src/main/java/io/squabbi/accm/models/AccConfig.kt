@@ -8,5 +8,6 @@ class AccConfig(
     val resetUnplugged: String,
     val loopDelay: Int,
     val maxLogSize: Int,
-    val onBootExit: String
+    val onBootExit: String,
+    val selfUpgrade: String
 )

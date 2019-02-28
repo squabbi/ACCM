@@ -28,7 +28,8 @@
     <string name="config_title_resetUnplugged">Reset on Unplug</string>
     <string name="config_title_loopDelay">Loop Delay</string>
     <string name="config_title_maxLogSize">Maximum Log Size</string>
-    <string name="config_title_onBootExit">Exit after applying OnBoot</string>
+    <string name="config_title_onBootExit">Exit After Applying OnBoot</string>
+    <string name="config_title_selfUpgrade">accd Self Upgrade</string>
 
     <string name="config_capacity_shutdownAt">Shutdown at %1$d%%</string>
     <string name="config_capacity_coolDownAt">Cool down at %1$d%%</string>

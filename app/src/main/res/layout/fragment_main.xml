@@ -387,6 +387,29 @@
 
                     </RelativeLayout>
 
+                    <!-- Self Upgrade -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="@dimen/card_margin" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/label_text"
+                            android:textStyle="bold"
+                            android:text="@string/config_title_selfUpgrade"/>
+
+                        <TextView
+                            android:id="@+id/tv_main_config_selfUpgrade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="@tools:sample/full_names"
+                            android:layout_alignParentEnd="true"/>
+
+                    </RelativeLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

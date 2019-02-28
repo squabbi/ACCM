@@ -1,5 +1,6 @@
 package io.squabbi.accm.fragments
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,7 @@ class MainFragment: Fragment() {
         // Set ViewModel
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        // Observeables
+        // Observables
         mainViewModel.mAccInfoLiveData.observe(this, Observer {
                 info ->
             // Update UI
@@ -43,7 +44,7 @@ class MainFragment: Fragment() {
                 // Capacity
                 tv_main_config_capacity_shutdown.text = getString(R.string.config_capacity_shutdownAt,
                     info.capacity[0])
-                tv_main_config_capacity_cooldown.text = getString(R.string.config_capacity_coolDownAt,
+                tv_main_config_capacity_coolDown.text = getString(R.string.config_capacity_coolDownAt,
                     info.capacity[1])
                 tv_main_config_capacity_chargeBetween.text = getString(R.string.config_capacity_chargeBetween,
                     info.capacity[2], info.capacity[3])
@@ -75,6 +76,11 @@ class MainFragment: Fragment() {
 
                 // Exit after OnBoot
                 tv_main_config_onBootExit.text = info.onBootExit
+
+                // Self Upgrade
+                tv_main_config_selfUpgrade.text = info.selfUpgrade
+            }
+        })
 
         mainViewModel.mAccDaemonRunning.observe(this, Observer {
             // Update UI
