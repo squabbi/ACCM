@@ -19,7 +19,8 @@ class AccRepository {
         override fun run() {
             mAccInfoLiveData.value = AccUtils.getAccInfo()
             mAccConfigLiveData.value = AccUtils.getAccConfig()
-            UiThreadHandler.handler.postDelayed(this, 1000)
+            mAccDaemonRunningLiveData.value = AccUtils.isDaemonRunning()
+            UiThreadHandler.handler.postDelayed(this, 1500)
         }
     }
 
