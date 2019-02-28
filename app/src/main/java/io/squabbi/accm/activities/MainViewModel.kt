@@ -18,10 +18,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val mAccInfoLiveData: LiveData<AccInfo>
     val mAccConfigLiveData: LiveData<AccConfig>
+    val mAccDaemonRunning: LiveData<Boolean>
 
     init {
         repository = AccRepository()
         mAccInfoLiveData = repository.mAccInfoLiveData
         mAccConfigLiveData = repository.mAccConfigLiveData
+        mAccDaemonRunning = repository.mAccDaemonRunningLiveData
     }
 }
