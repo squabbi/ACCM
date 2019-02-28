@@ -14,6 +14,7 @@ class AccRepository {
 
     val mAccInfoLiveData: MutableLiveData<AccInfo> = MutableLiveData()
     val mAccConfigLiveData: MutableLiveData<AccConfig> = MutableLiveData()
+    val mAccDaemonRunningLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     val accInfoRunnable = object: Runnable {
         override fun run() {

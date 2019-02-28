@@ -53,6 +53,18 @@ class MainFragment: Fragment() {
                     info.coolDown[0], info.coolDown[0])
                 tv_main_config_coolDown_pause.text = resources.getQuantityString(R.plurals.plural_config_coolDown_pause,
                     info.coolDown[1], info.coolDown[1])
+        mainViewModel.mAccDaemonRunning.observe(this, Observer {
+            // Update UI
+            if (it) {
+                // Running
+                tv_main_accdStatus.text = getString(R.string.info_daemon_started)
+                fl_status_container.background = ColorDrawable(resources.getColor(R.color.colorSuccessful))
+                iv_main_status_icon.setImageResource(R.drawable.ic_baseline_check_circle_24px)
+            } else {
+                // Not running
+                tv_main_accdStatus.text = getString(R.string.info_daemon_stopped)
+                fl_status_container.background = ColorDrawable(resources.getColor(R.color.colorError))
+                iv_main_status_icon.setImageResource(R.drawable.ic_baseline_error_24px)
             }
         })
     }
