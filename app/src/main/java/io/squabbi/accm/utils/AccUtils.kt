@@ -33,6 +33,7 @@ object AccUtils {
     val ON_BOOT_EXIT = """^\s*onBootExit=(true|false)""".toRegex(RegexOption.MULTILINE)
     val ON_BOOT = """^\s*onBoot=([^#]+)""".toRegex(RegexOption.MULTILINE)
     val VOLT_FILE = """^\s*voltFile=([^#]+)""".toRegex(RegexOption.MULTILINE)
+    // Regex for selfUpgrade
     val SELF_UPGRADE_CONFIG_REGEXP = """^\s*selfUpgrade=(true|false)""".toRegex(RegexOption.MULTILINE)
 
     // Regex for determining NAME of BATTERY
