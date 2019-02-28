@@ -53,6 +53,29 @@ class MainFragment: Fragment() {
                     info.coolDown[0], info.coolDown[0])
                 tv_main_config_coolDown_pause.text = resources.getQuantityString(R.plurals.plural_config_coolDown_pause,
                     info.coolDown[1], info.coolDown[1])
+
+                // Temperature
+                tv_main_config_temp_coolDown.text = getString(R.string.config_temp_coolDownAt, info.temperature[0])
+                tv_main_config_temp_pauseCharging.text = getString(R.string.config_temp_pauseCharging, info.temperature[1])
+                tv_main_config_temp_wait.text = resources.getQuantityString(R.plurals.plural_config_temp_pause,
+                    info.temperature[2], info.temperature[2])
+
+                // Verbose
+                tv_main_config_verbose.text = info.verbose
+
+                // Reset on Unplug
+                tv_main_config_resetOnUnplugged.text = info.resetUnplugged
+
+                // Loop Delay
+                tv_main_config_loopDelay.text = resources.getQuantityString(R.plurals.plural_config_loopDelay,
+                    info.loopDelay, info.loopDelay)
+
+                // Max Log Size
+                tv_main_config_maxLogSize.text = getString(R.string.config_maxLogSize, info.maxLogSize)
+
+                // Exit after OnBoot
+                tv_main_config_onBootExit.text = info.onBootExit
+
         mainViewModel.mAccDaemonRunning.observe(this, Observer {
             // Update UI
             if (it) {
