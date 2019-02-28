@@ -16,14 +16,8 @@ class MainFragment: Fragment() {
 
     private lateinit var mainViewModel: MainViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_main, container, false)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Set ViewModel
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
 
         // Observables
         mainViewModel.mAccInfoLiveData.observe(this, Observer {
@@ -96,6 +90,16 @@ class MainFragment: Fragment() {
                 iv_main_status_icon.setImageResource(R.drawable.ic_baseline_error_24px)
             }
         })
+        
+        return view
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Set ViewModel
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
     private fun updateCapacity(capacity: Int) {
